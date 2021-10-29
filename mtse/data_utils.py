@@ -36,6 +36,3 @@ class mtan_Dataset(Dataset):
     def __getitem__(self, idx):
         return (self.sequences[idx], self.target[idx]) if not self.test_data else self.sequences[idx]
 
-
-
-# assert 1==3, 'ass1'
