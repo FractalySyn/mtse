@@ -15,17 +15,20 @@ pip install mtse
 ```python
 import mtse
 
+### Load sample data ###
+train, val, test, norm = mtse.get_sample(return_norm=True)
+
 ### Using the class `mtse` ###
 mtan = mtse.mtse(device='cuda', seed=1, experiment_id='mtan')
-mtan.load_data(train, val, test)
+mtan.load_data(train, val, test, norm=norm)
 mtan.build_model('mtan', 'regression', learn_emb=True, early_stop=10)
 mtan.train(cuda_empty_cache=True, lossf='mape', n_iters=200, save_startegy='best')
 mtan.predict(checkpoint='best')
 
 ### Using the funcion `run_model` ###
-mtse.run_model(train_data = train, val_data = val, test_data=test, predict_strategy='last', save_strategy=None, 
-               optim='default', sched='default', seed=11, n_iters=100, lossf='mse', device='cuda', batch_size=128,
-               early_stop=5, encoder='mtan')
+mtse.run_model(train_data = train, val_data = val, test_data=test, predict_strategy='last', 
+               save_strategy=None, optim='default', sched='default', seed=11, n_iters=100, 
+               lossf='mse', device='cuda', batch_size=128, early_stop=5, encoder='mtan')
 ```
 
 **More details and examples in the documentation**
