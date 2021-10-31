@@ -27,7 +27,7 @@ mtan.predict(checkpoint='best')
 mtan.encode_ts(data_to_embed='test', embed_pandas=True)
 ```
 
-**More details and examples in the documentation**
+**More details and examples in the [documentation](https://www.fractalds.pro/posts/mtse/presentation/)**
 
 ## What can be implemented / improved
 
