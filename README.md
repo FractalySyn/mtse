@@ -21,9 +21,10 @@ train, val, test, norm = mtse.get_sample(return_norm=True)
 ### Using the class `mtse` ###
 mtan = mtse.mtse(device='cuda', seed=1, experiment_id='mtan')
 mtan.load_data(train, val, test, norm=norm)
-mtan.build_model('mtan', 'regression', learn_emb=True, early_stop=10)
-mtan.train(cuda_empty_cache=True, lossf='mape', n_iters=200, save_startegy='best')
+mtan.build_model('mtan', 'regression', learn_emb=True, early_stop=10, cuda_empty_cache=True)
+mtan.train(lossf='mape', n_iters=200, save_startegy='best')
 mtan.predict(checkpoint='best')
+mtan.encode_ts(data_to_embed='test', embed_pandas=True)
 ```
 
 **More details and examples in the documentation**
