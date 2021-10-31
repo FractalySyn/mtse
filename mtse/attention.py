@@ -28,7 +28,7 @@ class MultiTimeAttention(nn.Module):
     dim : int
         number of input data time series * 2
     nhidden : int
-        dimension returned by the forward() method
+        dimension returned by the `forward` method
     linears: torch.nn.ModuleList
         list of linear layers used in the attention mecanism
     pdrop : float
@@ -83,7 +83,7 @@ class MultiTimeAttention(nn.Module):
             query values
         key : torch.tensor
             key values
-        key : torch.tensor
+        value : torch.tensor
             original values
         mask : torch.tensor or NoneType, optional
             defines which values have to be masked (default is None)
@@ -113,7 +113,7 @@ class MultiTimeAttention(nn.Module):
             query values
         key : torch.tensor
             key values
-        key : torch.tensor
+        value : torch.tensor
             original values
         mask : torch.tensor or NoneType, optional
             defines which values have to be masked (default is None)

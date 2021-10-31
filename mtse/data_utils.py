@@ -61,9 +61,9 @@ class mtan_Dataset(Dataset):
         True if the dataset provided is a test set i.e. it does not contain targets / labels
     dim : int
         number of time series
-    sequences
+    sequences : torch.tensor
         returned sequences
-    target
+    target : torch.tensor
         returned targets / labels
 
     Methods

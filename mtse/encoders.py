@@ -12,11 +12,12 @@ mtan_enc : MTAN encoder
 
 Functions
 ---------
-default_regressor : default top regressor when not provided
-default_classifier : default top classifier when not provided
+default_regressor : default top regressor when not provided in `mtan_enc`
+default_classifier : default top classifier when not provided in `mtan_enc`
 """
 
 def default_regressor(nhidden):
+    """default top regressor when not provided in `mtan_enc`"""
     return nn.Sequential(
         nn.Linear(nhidden, 150),
         nn.ReLU(),
@@ -25,6 +26,7 @@ def default_regressor(nhidden):
         nn.Linear(150, 1))
 
 def default_classifier(n_out, nhidden):
+    """default top classifier when not provided in `mtan_enc`"""
     return nn.Sequential(
         nn.Linear(nhidden, 150),
         nn.ReLU(),

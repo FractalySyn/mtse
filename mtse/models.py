@@ -155,7 +155,7 @@ class mtse:
         ----------
         encoder : str, optional
             encoder architecture, currently supports 'mtan' (deafult is mtan)
-        model_type : str
+        model_type : str, optional
             'regression' or 'classification' (default is regression)
         regressor : torch model or NoneType, optional
             used to specify a custom top regressor (default is None)
@@ -292,7 +292,7 @@ class mtse:
 
         Returns
         -------
-        if `predict_strategy` is not None, the method returns the predictions
+        if `predict_strategy` is not None, the method returns the predictions as a torch.tensor
 
         Raises
         ------
@@ -395,7 +395,7 @@ class mtse:
 
         Returns
         -------
-        predictions performed on the test data
+        predictions performed on the test data as a torch.tensor
 
         Raises
         ------
@@ -450,8 +450,8 @@ class mtse:
 
         Returns
         -------
-        if embed_pandas is set to True, returns a pandas DataFrame of shape (N, embed_time) containing the embeddings for each observation
-        if embed_pandas is set to False, returns a numpy array containing the embeddings for each observation
+        if `embed_pandas` is set to True, returns a pandas DataFrame of shape (N, embed_time) containing the embeddings for each observation
+        if `embed_pandas` is set to False, returns a numpy array containing the embeddings for each observation
 
         Raises
         ------
