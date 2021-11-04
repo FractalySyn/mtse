@@ -200,7 +200,7 @@ class mtse:
             (default is None)        
         pdrop : float, optional
             probability of dropout (default is 0.5)
-        query : torch.tensor or NoneType, optional
+        query : int or NoneType, optional
             query values dimension; if None, it is set to `embed_time` (default is None)
         freq : float, optional
             parameter of the time embedding when static, i.e. `learn_emb` is set to False (default is 1.)  
@@ -354,19 +354,21 @@ class mtse:
             if x_start <= 0:
                 raise ValueError('x_start should be greater than 0')
             print(f'\n### Plotting results ###')        
-            fig = plt.figure(figsize=(10, 6), dpi=100)
+            fig, ax = plt.subplots(figsize=(14, 8))
             train_losses = train_losses[x_start-1:]
             val_losses = val_losses[x_start-1:]
             plt.plot([x for x in range(len(train_losses))], [l for l in train_losses], label='training loss')
             plt.plot([x for x in range(len(val_losses))], [l for l in val_losses], label='validation loss')
-            plt.ylabel(lossf); plt.xlabel("Iteration")
-            plt.xticks(ticks=[x for x in range(len(train_losses))], labels=[x for x in range(x_start, len(train_losses)+x_start)])
-            plt.legend(); plt.show()
+            plt.ylabel(lossf); plt.xlabel(f"Iteration starting from {x_start}")
+            # plt.xticks(ticks=[x for x in range(len(train_losses))], labels=[x for x in range(x_start, len(train_losses)+x_start)])
+            plt.legend()#; plt.show()
             if save_plot:
                 fig.savefig(f'results_{self.experiment_id}.png', format='png')
                 with open(f'results_{self.experiment_id}.pickle', 'wb') as f:
-                    pickle.dump(fig, f)
-                print('figure saved as `results_{self.experiment_id}.png` and as `results_{self.experiment_id}.pickle` \n')
+                    pickle.dump(ax, f)
+                print(f'figure saved as `results_{self.experiment_id}.png` and as `results_{self.experiment_id}.pickle` \n')
+            ax.set_xticks(ax.get_xticks().tolist()[1:-1])
+            ax.set_xticklabels([str(x_start)] + [str(float(item.get_text())+x_start+1) for item in ax.get_xticklabels()[1:]])
             self.results = fig        
 
         if predict_strategy is not None:
